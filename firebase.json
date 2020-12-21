@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "site": "defence-338c4",
+    "public": "defence",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}
