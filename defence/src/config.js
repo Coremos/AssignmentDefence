@@ -6,6 +6,9 @@ import TitleScene from './scene/TitleScene';
 import TutorialScene from './scene/TutorialScene';
 import MainScene from './scene/MainScene';
 
+import LoginScene from './scene/LoginScene';
+import RegisterScene from './scene/RegisterScene';
+
 import { PIXELPERUNIT } from './setting';
 
 const SCALE = {
@@ -40,7 +43,7 @@ const config = {
     },
   },
   backgroundColor: '#000000',
-  scene: [PreloadScene, LoadScene, TitleScene, MainScene, TutorialScene, GameScene],
+  scene: [PreloadScene, LoadScene, TitleScene, RegisterScene, LoginScene, MainScene, TutorialScene, GameScene],
 };
 
 export { config };

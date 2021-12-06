@@ -11,8 +11,8 @@ const UNITTYPE =
       strengthIncrease: 0.05,
       bulletTexture: 'lightParticle',
       attack: true,
-      descript: 'Gain gold when combine',
-      //descript: '합성할 때 골드를 획득합니다.',
+      //descript: 'Gain gold when combine',
+      descript: '합성할 때 골드를 획득.',
     },
     plant: {
       texture: 'plant',
@@ -24,8 +24,8 @@ const UNITTYPE =
       strengthIncrease: 0.2,
       bulletTexture: 'bullet',
       attack: false,
-      descript: "Gain gold every 4 seconds, but can't attack",
-      //descript: '공격대신 골드를 획득합니다.',
+      // descript: "Gain gold every 4 seconds, but can't attack",
+      descript: '공격대신 골드를 획득.',
     },
     gem: {
       texture: 'gem',
@@ -54,7 +54,7 @@ const UNITTYPE =
     sugar: {
       texture: 'sugar',
       attackSpeed: 1,
-      attackSpeedIncrease: 0.02,
+      attackSpeedIncrease: 0.05,
       speed: 0.5,
       speedIncrease: 0,
       strength: 1,

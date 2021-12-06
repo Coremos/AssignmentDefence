@@ -8,8 +8,9 @@ class LoadScene extends Scene {
 
   preload() {
     // Font
-    this.load.bitmapFont('nokia', './font/nokia16.png');
-    this.load.bitmapFont('nokiaBlack', './font/nokiaBlack.png');
+    // this.load.bitmapFont('nokia', './font/nokia16.png');
+    // this.load.bitmapFont('nokiaBlack', './font/nokiaBlack.png');
+    // this.load.bitmapFont('Moris', './font/Moris.png');
 
     // Unit
     this.load.image('gold', './image/gold.png');
@@ -38,23 +39,23 @@ class LoadScene extends Scene {
     });
 
     // Initialize
-    this.add.bitmapText(3 * PIXELPERUNIT, 3.5 * PIXELPERUNIT, 'nokia', 'Defence', 10).setOrigin(0.5);
+    this.add.bitmapText(3 * PIXELPERUNIT, 3.5 * PIXELPERUNIT, 'Moris', 'Assignment Defence', 12).setOrigin(0.5);
 
     let percentText = this.add
-      .bitmapText(3 * PIXELPERUNIT, 4.25 * PIXELPERUNIT, 'nokia', 'NULL', 10)
+      .bitmapText(3 * PIXELPERUNIT, 4.25 * PIXELPERUNIT, 'Moris', 'NULL', 12)
       .setOrigin(0.5)
       .setDepth(1);
     let progressBar = this.add.graphics().setDepth(0);
     let progressBox = this.add
       .graphics()
       .fillStyle(0x222222, 0.8)
-      .fillRect(2 * PIXELPERUNIT, 4 * PIXELPERUNIT, 2 * PIXELPERUNIT, 0.5 * PIXELPERUNIT)
+      .fillRect(1.5 * PIXELPERUNIT, 4 * PIXELPERUNIT, 3 * PIXELPERUNIT, 0.5 * PIXELPERUNIT)
       .setDepth(0);
 
     this.load.on('progress', function (value) {
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(2 * PIXELPERUNIT, 4 * PIXELPERUNIT, 2 * value * PIXELPERUNIT, 0.5 * PIXELPERUNIT);
+      progressBar.fillRect(1.5 * PIXELPERUNIT, 4 * PIXELPERUNIT, 3 * value * PIXELPERUNIT, 0.5 * PIXELPERUNIT);
       percentText.setText(parseInt(value * 100) + '%');
     });
 
@@ -64,7 +65,7 @@ class LoadScene extends Scene {
 
     this.load.on('complete', function () {
       this.scene.add
-        .bitmapText(3 * PIXELPERUNIT, 5 * PIXELPERUNIT, 'nokia', 'Start', 10)
+        .bitmapText(3 * PIXELPERUNIT, 5 * PIXELPERUNIT, 'Moris', 'Start', 12)
         .setOrigin(0.5)
         .setInteractive()
         .on(

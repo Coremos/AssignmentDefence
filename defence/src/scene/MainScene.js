@@ -14,9 +14,9 @@ class MainScene extends Scene {
   create() {
     console.log('%c Main ', 'background: blue; color: white; display: block;');
 
-    this.add.bitmapText(3 * PIXELPERUNIT, 0.5 * PIXELPERUNIT, 'nokia', 'Select Units', 10).setOrigin(0.5);
+    this.add.bitmapText(3 * PIXELPERUNIT, 0.5 * PIXELPERUNIT, 'Moris', 'Select Units', 12).setOrigin(0.5);
     this.add
-      .bitmapText(3 * PIXELPERUNIT, 5 * PIXELPERUNIT, 'nokia', 'Start', 10)
+      .bitmapText(3 * PIXELPERUNIT, 5 * PIXELPERUNIT, 'Moris', 'Start', 12)
       .setOrigin(0.5)
       .setInteractive()
       .on(
@@ -27,7 +27,10 @@ class MainScene extends Scene {
         this
       );
 
-    this.descript = this.add.bitmapText(3 * PIXELPERUNIT, 5.5 * PIXELPERUNIT, 'nokia', 'NULL', 10).setOrigin(0.5);
+    this.descript = this.add
+      .bitmapText(1.5 * PIXELPERUNIT, 6 * PIXELPERUNIT, 'Moris', 'NULL', 12)
+      .setOrigin(0)
+      .setMaxWidth(3 * PIXELPERUNIT);
 
     this.typeList = Array(5);
     for (let i = 0; i < this.game.UnitTypeList.length; i++) {
@@ -55,6 +58,12 @@ class MainScene extends Scene {
             this.setTexture(UNITTYPE[SelectedUnit].texture);
             console.log(this.scene.game.UnitTypeList);
           }
+        })
+        .on('pointerover', function () {
+          this.setTint(0x7878ff);
+        })
+        .on('pointerout', function () {
+          this.clearTint();
         });
     }
 
@@ -79,14 +88,25 @@ class MainScene extends Scene {
           this.clearTint();
         });
     }
+
+    this.add
+      .zone(152, 130, 320, 256)
+      .setOrigin(0)
+      .setInteractive()
+      .on('pointermove', function (pointer) {
+        if (pointer.isDown) {
+          text.y += pointer.velocity.y / 10;
+          text.y = Phaser.Math.Clamp(text.y, -400, 300);
+        }
+      });
   }
 
   update() {
     if (this.overUnit) {
-      if (this.currentUnit !== this.overUnit) {
-        this.currentUnit = this.overUnit;
-        this.descript.setText(UNITTYPE[this.overUnit].descript);
-      }
+      //if (this.currentUnit !== this.overUnit) {
+      this.currentUnit = this.overUnit;
+      this.descript.setText(UNITTYPE[this.overUnit].descript);
+      //}
     } else {
       this.descript.setText('');
     }
