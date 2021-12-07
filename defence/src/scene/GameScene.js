@@ -254,7 +254,8 @@ class GameScene extends Scene {
     this.hpText.setText(this.game.HP);
     this.goldText.setText(this.goldCurrent);
     this.priceText.setText(this.game.UnitPrice);
-    this.levelText.setText(this.game.Level);
+    // this.levelText.setText(this.game.Level);
+    this.levelText.setText(Level);
     for (let i = 0; i < this.game.UnitTypeList.length; i++) {
       this.unitLevelText[i].setText(this.game.UnitLevelPrice[i]);
     }
@@ -274,7 +275,8 @@ class GameScene extends Scene {
   gameOver() {
     this.game.HP = 0;
     this.game.GameOver = true;
-    this.game.Cash += parseInt(Level * 1.5);
+    this.game.GainDiamond = parseInt(Level * 1.5);
+    this.game.HighScore = Level;
     this.physics.pause();
     console.log('%c GameOver ', 'background: red; color: white; display: block;');
     this.add
@@ -285,7 +287,9 @@ class GameScene extends Scene {
     this.input.once(
       'pointerup',
       function () {
-        this.scene.restart();
+        // 재시작
+        // this.scene.restart();
+        this.scene.start('resultScene');
       },
       this
     );

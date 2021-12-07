@@ -6,6 +6,26 @@ import firebase from 'firebase/app';
 //var database = firebase.database();
 var SelectedUnit;
 
+function Save(id, unitTypeList, diamond, highScore) {
+  console.log(id + '로 저장됐다.');
+  var list = '';
+  for (let i = 0; i < unitTypeList.length; i++) {
+    for (let j = 0; j < Object.keys(UNITTYPE).length; j++) {
+      if (unitTypeList[i] == Object.keys(UNITTYPE)[j]) {
+        list = list + '' + j;
+        break;
+      }
+    }
+  }
+  console.log(list + '로 변환완료');
+
+  var data = 'id=' + id + '&unitTypeList=' + list + '&diamond=' + diamond + '&highScore=' + highScore;
+  var request = new XMLHttpRequest();
+  request.open('POST', './save.php', true);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+  request.send(data);
+}
+
 class MainScene extends Scene {
   constructor() {
     super('mainScene');
@@ -14,9 +34,14 @@ class MainScene extends Scene {
   create() {
     console.log('%c Main ', 'background: blue; color: white; display: block;');
 
-    this.add.bitmapText(3 * PIXELPERUNIT, 0.5 * PIXELPERUNIT, 'Moris', 'Select Units', 12).setOrigin(0.5);
+    // 한번 세이브
+    if (this.game.ID !== '') {
+      Save(this.game.ID, this.game.UnitTypeList, this.game.Diamond, this.game.HighScore);
+    }
+
+    this.add.bitmapText(3 * PIXELPERUNIT, 0.5 * PIXELPERUNIT, 'Moris', '유닛 선택', 12).setOrigin(0.5);
     this.add
-      .bitmapText(3 * PIXELPERUNIT, 5 * PIXELPERUNIT, 'Moris', 'Start', 12)
+      .bitmapText(3 * PIXELPERUNIT, 5 * PIXELPERUNIT, 'Moris', '게임 시작', 12)
       .setOrigin(0.5)
       .setInteractive()
       .on(
@@ -27,10 +52,11 @@ class MainScene extends Scene {
         this
       );
 
-    this.descript = this.add
-      .bitmapText(1.5 * PIXELPERUNIT, 6 * PIXELPERUNIT, 'Moris', 'NULL', 12)
-      .setOrigin(0)
-      .setMaxWidth(3 * PIXELPERUNIT);
+    // 다이아 출력부분
+    this.add.image(0 * PIXELPERUNIT, 1 * PIXELPERUNIT, 'diamond').setOrigin(0);
+    this.diamondText = this.add.bitmapText(1 * PIXELPERUNIT, 1 * PIXELPERUNIT, 'Moris', '', 12);
+
+    this.descript = this.add.bitmapText(1.5 * PIXELPERUNIT, 6 * PIXELPERUNIT, 'Moris', 'NULL', 12).setMaxWidth(3 * PIXELPERUNIT);
 
     this.typeList = Array(5);
     for (let i = 0; i < this.game.UnitTypeList.length; i++) {
@@ -110,6 +136,7 @@ class MainScene extends Scene {
     } else {
       this.descript.setText('');
     }
+    this.diamondText.setText(this.game.Diamond);
   }
 }
 

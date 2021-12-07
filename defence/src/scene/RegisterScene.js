@@ -8,16 +8,7 @@ function Regist(id, password) {
   var data = 'id=' + id + '&password=' + password;
   var request = new XMLHttpRequest();
   request.open('POST', './register.php', true);
-
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-  //   request.onload = function () {
-  //     if (request.status >= 200 && request.status < 400) {
-  //       // Success!
-  //       // here you could go to the leaderboard or restart your game .
-  //     } else {
-  //       // We reached our target server, but it returned an error
-  //     }
-  //   };
   request.send(data);
   request.onreadystatechange = function () {
     Message = request.responseText;

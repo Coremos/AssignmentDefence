@@ -61,7 +61,7 @@ const UNITTYPE =
       strengthIncrease: 0.01,
       bulletTexture: 'sugarParticle',
       attack: true,
-      descript: '공격속도가 증가',
+      descript: '공격속도가 빠름',
     },
     orgol: {
       texture: 'orgol',
@@ -73,9 +73,8 @@ const UNITTYPE =
       strengthIncrease: 0.01,
       bulletTexture: 'note',
       attack: true,
-      descript: '랭크가 같다면 종류가 달라도 합성 가능',
+      descript: '별다를 것 없는 유닛',
     },
   };
-//});
 
 export { UNITTYPE };

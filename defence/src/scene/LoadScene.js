@@ -19,6 +19,7 @@ class LoadScene extends Scene {
     this.load.image('egg', './image/egg.png');
     this.load.image('gem', './image/gem.png');
     this.load.image('orgol', './image/orgol.png');
+    this.load.image('diamond', './image/diamond.png');
 
     // Bullet
     this.load.image('sugarParticle', './image/sugarParticle.png');
